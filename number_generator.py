@@ -38,6 +38,8 @@ horizontal_object_right = []
 
 set_pair = set()
 dictionnary = {}
+#Variable utilisée pour ne pas supprimer une donnée pendant le parcours du dictionnaire
+key_to_remove = None
 
 # Création des nombres à cliquer. Utilisation d'un set pour garantir l'absence de doublon
 while len(set_pair) < number_of_pair:
@@ -71,9 +73,13 @@ while len(object_list) < number_of_enemies:
 
 assert len(object_list) == number_of_enemies, "La liste des rectangles est différente de 10"
 
-# for obj, i in object_list, list_pair:
-#     list_pair[i].topleft = obj.topleft
-
+#Boucle de création du dictionnaire pour placer les messages
+for obj in object_list:
+    coordinates = obj.topleft
+    rect = list_msg[j].get_rect()
+    rect.topleft = coordinates
+    dictionnary.update({list_msg[j]: rect})
+    j += 1
 
 while running:
     for event in pygame.event.get():
@@ -82,16 +88,12 @@ while running:
         elif event.type == pygame.MOUSEBUTTONDOWN:
             for dicK, dicV in dictionnary.items():
                 if dicV.collidepoint(event.pos):
-                    dictionnary.pop(dicK)
+                    key_to_remove = dicK
                     score += 200
+    if key_to_remove is not None:
+        dictionnary.pop(key_to_remove)
+        key_to_remove = None
     screen.fill("grey")
-
-    for obj in object_list:
-        coordinates = obj.topleft
-        for list_n in list_msg:
-            rect = list_n.get_rect()
-            rect.topleft = coordinates
-            dictionnary.update({list_n: rect})
 
     # Création des rectangles sur l'aire de jeu
     for msg, rect in dictionnary.items():
