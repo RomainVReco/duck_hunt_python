@@ -53,6 +53,7 @@ list_msg = list()
 # Création de l'objet Font pour écrire dessus
 police = pygame.font.Font('freesansbold.ttf', 16)
 
+# Les multiples sont transformés en message affichable à l'écran
 for i in range(len(list_pair)):
     list_msg.append(police.render(str(list_pair[i]), True, NOIR))
 
@@ -73,7 +74,7 @@ while len(object_list) < number_of_enemies:
 
 assert len(object_list) == number_of_enemies, "La liste des rectangles est différente de 10"
 
-#Boucle de création du dictionnaire pour placer les messages
+#Boucle de création du dictionnaire pour placer les messages sur l'écran
 for obj in object_list:
     coordinates = obj.topleft
     rect = list_msg[j].get_rect()
@@ -95,17 +96,13 @@ while running:
         key_to_remove = None
     screen.fill("grey")
 
-    # Création des rectangles sur l'aire de jeu
+    # Création des rectangles sur l'aire de jeu avec les nombres
     for msg, rect in dictionnary.items():
         screen.blit(msg, rect)
         j += 1
         rect.y += (15 / FPS)
-        rect.x += (9 / FPS)
-        if rect.y > hauteur_ecran:
-            object_list.pop(msg)
-        if rect.x > largeur_ecran:
-            object_list.pop(msg)
-            score -= 50
+        rect.x += (15 / FPS)
+
     if len(dictionnary) == 0:
         pygame.quit()
     j = 0
