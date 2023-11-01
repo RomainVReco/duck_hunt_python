@@ -9,6 +9,7 @@ import pygame
 # Couleurs
 JAUNE = (255, 255, 0)
 ORANGE = (237, 127, 16)
+NOIR = (0,0,0)
 
 # Couleur du fond de la fenête
 COULEUR_FOND = (0, 255, 0)
@@ -36,6 +37,11 @@ rect_jaune = pygame.draw.rect(fen, JAUNE, [50, 80, LARGEUR_REC, HAUTEUR_REC])
 
 continuer = True
 
+texte = "Bonjour"
+police = pygame.font.Font('freesansbold.ttf', 16)
+msg_test = police.render("Bobby",True, NOIR)
+
+
 while continuer:
     for event in pygame.event.get():
         # L'utilisateur veut-il fermer la fenêtre ?
@@ -53,6 +59,8 @@ while continuer:
 
             if rect_jaune.collidepoint(event.pos) and rect_orange.collidepoint(event.pos):
                 print(" --> Jaune et Orange")
+
+    fen.blit(msg_test, (LARGEUR/2, HAUTEUR/2))
 
     pygame.display.flip()
 

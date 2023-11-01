@@ -35,6 +35,13 @@ other_object = []
 horizontal_object_left = []
 horizontal_object_right = []
 
+nombre_pair = set()
+while len(nombre_pair) < 5:
+    entier = random.randrange(2,100,2)
+    nombre_pair.add(entier)
+police = pygame.font.Font('freesansbold.ttf', 16)
+msg_test = police.render("Bobby",True, NOIR)
+
 i = 0
 
 # Création de manière aléatoire et sans chevauchement des aires des rectangles
@@ -51,6 +58,7 @@ while len(object_list) < number_of_enemies:
 
 assert len(object_list) == number_of_enemies, "La liste des rectangles est différente de 10"
 
+#Création de cible supplémentaire
 while len(other_object) < number_of_target:
     object_creation_process = pygame.Rect(random.randint(0, largeur_ecran - WIDTH_OBJECT), 0, WIDTH_OBJECT // 2,
                                           HEIGHT_OBJECT // 2)
