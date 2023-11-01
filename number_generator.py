@@ -21,6 +21,8 @@ pos_y_object = 0
 WIDTH_OBJECT = 70
 HEIGHT_OBJECT = 50
 FPS = 30
+GRAVITY = 1.3
+
 clock = pygame.time.Clock()
 number_of_enemies = 5
 number_of_target = 5
@@ -96,18 +98,19 @@ while running:
         key_to_remove = None
     screen.fill("grey")
 
+    pos_y_object += (12 / FPS)*GRAVITY
     # Création des rectangles sur l'aire de jeu avec les nombres
     for msg, rect in dictionnary.items():
         screen.blit(msg, rect)
         j += 1
-        rect.y += (15 / FPS)
+        rect.y += pos_y_object
         rect.x += (15 / FPS)
 
     if len(dictionnary) == 0:
         pygame.quit()
     j = 0
 
-    pos_y_object = pos_y_object + 10
+
     print("pos_y : ", pos_y_object)
 
     pygame.display.flip()
