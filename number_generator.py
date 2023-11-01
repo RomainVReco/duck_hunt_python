@@ -14,7 +14,7 @@ screen.fill("grey")
 ORANGE = (255, 127, 0)
 NOIR = (0, 0, 0)
 BLEU = (0, 0, 255)
-INDIGO = (75,0,130)
+INDIGO = (75, 0, 130)
 
 pos_x_object = 0
 pos_y_object = 0
@@ -39,17 +39,16 @@ horizontal_object_right = []
 set_pair = set()
 dictionnary = {}
 
-
-#Création des nombres à cliquer. Utilisation d'un set pour garantir l'absence de doublon
+# Création des nombres à cliquer. Utilisation d'un set pour garantir l'absence de doublon
 while len(set_pair) < number_of_pair:
-    entier = random.randrange(2,100,2)
+    entier = random.randrange(2, 100, 2)
     set_pair.add(entier)
 
-#On transforme le set en list, pour accéder aux valeurs plus facilement
+# On transforme le set en list, pour accéder aux valeurs plus facilement
 list_pair = list(set_pair)
 list_msg = list()
 
-#Création de l'objet Font pour écrire dessus
+# Création de l'objet Font pour écrire dessus
 police = pygame.font.Font('freesansbold.ttf', 16)
 
 for i in range(len(list_pair)):
@@ -76,19 +75,14 @@ assert len(object_list) == number_of_enemies, "La liste des rectangles est diff�
 #     list_pair[i].topleft = obj.topleft
 
 
-
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
         elif event.type == pygame.MOUSEBUTTONDOWN:
-            for obj in object_list:
-                if obj.collidepoint(event.pos):
-                    object_list.remove(obj)
-                    score += 200
-            for other in other_object:
-                if other.collidepoint(event.pos):
-                    other_object.remove(other)
+            for dicK, dicV in dictionnary.items():
+                if dicV.collidepoint(event.pos):
+                    dictionnary.pop(dicK)
                     score += 200
     screen.fill("grey")
 
@@ -97,20 +91,20 @@ while running:
         for list_n in list_msg:
             rect = list_n.get_rect()
             rect.topleft = coordinates
-            dictionnary.update({rect : list_n})
+            dictionnary.update({list_n: rect})
 
     # Création des rectangles sur l'aire de jeu
-    for obj in object_list:
-        screen.blit(list_msg[j], obj)
+    for msg, rect in dictionnary.items():
+        screen.blit(msg, rect)
         j += 1
-        obj.y += (15 / FPS)
-        obj.x += (9 / FPS)
-        if obj.y > hauteur_ecran:
-            object_list.remove(obj)
-        if obj.x > largeur_ecran:
-            object_list.remove(obj)
+        rect.y += (15 / FPS)
+        rect.x += (9 / FPS)
+        if rect.y > hauteur_ecran:
+            object_list.pop(msg)
+        if rect.x > largeur_ecran:
+            object_list.pop(msg)
             score -= 50
-    if len(object_list) == 0:
+    if len(dictionnary) == 0:
         pygame.quit()
     j = 0
 
