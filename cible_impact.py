@@ -4,14 +4,14 @@ import pygame
 
 # Initialisation de Pygame
 pygame.init()
-
+# Pour initialiser l
 pygame.mixer.init()
 
 pygame.mixer.music.load("effet sonore/Shot in 357 Magnum 9mm.ogg")
 
 # Configuration de la fenêtre
 width, height = 900, 700
-screen = pygame.display.set_mode((width, height))
+screen_cible = pygame.display.set_mode((width, height))
 
 
 
@@ -27,13 +27,13 @@ pygame.mouse.set_visible(False)
 ########################################################################################
 
 
-mouse_is_pressed = False
+mouse_is_pressed_cible= False
 bullet_impacts = []
-movement_traces = []
+movement_traces_cible = []
 
 
 # Position initiale de la cible
-target_x, target_y = 400, 300
+target_x_cible, target_y_cible = 400, 300
 
 # Vitesse de déplacement du rectangle
 #speed = 3
@@ -49,36 +49,35 @@ while running:
             running = False
 
         elif event.type == pygame.MOUSEMOTION:
-            target_x, target_y = pygame.mouse.get_pos()
-            movement_traces.append((target_x, target_y))
+            target_x_cible, target_y_cible = pygame.mouse.get_pos()
+            movement_traces_cible.append((target_x_cible, target_y_cible))
 
         elif event.type == pygame.MOUSEBUTTONDOWN:
-            mouse_is_pressed = True
+            mouse_is_pressed_cible = True
             pygame.mixer.music.play()
 
         elif event.type == pygame.MOUSEBUTTONUP:
-            mouse_is_pressed = False
+            mouse_is_pressed_cible = False
             pygame.mixer.music.stop()
 
-            bullet_impacts.append((target_x, target_y, current_time))
+            bullet_impacts.append((target_x_cible, target_y_cible, current_time))
 
 
     # Limiter les mouvements dans la fenêtre
-    target_x = max(0, min(target_x, width))
-    target_y = max(0, min(target_y, height))
+    target_x_cible = max(0, min(target_x_cible, width))
+    target_y_cible = max(0, min(target_y_cible, height))
 
     # Dessiner le fond et le rectangle
-    screen.fill((255, 255, 255))  # Blanc
+    screen_cible.fill((255, 255, 255))  # Blanc
+
 
     # Dessiner l'image du curseur d'arme
-
     #screen.blit(gun_cursor, (target_x, target_y))
-
-    pygame.draw.circle(screen, (255, 0, 0), (target_x, target_y), 20)
-    pygame.draw.circle(screen, (0, 0, 0), (target_x, target_y), 16)
-    pygame.draw.circle(screen, (255, 0, 0), (target_x, target_y), 12)
-    pygame.draw.circle(screen, (0, 0, 0), (target_x, target_y), 8)
-    pygame.draw.circle(screen, (255, 0, 0), (target_x, target_y), 4)
+    pygame.draw.circle(screen_cible, (255, 0, 0), (target_x_cible, target_y_cible), 20)
+    pygame.draw.circle(screen_cible, (0, 0, 0), (target_x_cible, target_y_cible), 16)
+    pygame.draw.circle(screen_cible, (255, 0, 0), (target_x_cible, target_y_cible), 12)
+    pygame.draw.circle(screen_cible, (0, 0, 0), (target_x_cible, target_y_cible), 8)
+    pygame.draw.circle(screen_cible, (255, 0, 0), (target_x_cible, target_y_cible), 4)
 
     # Dessiner impact de balle
     for impact in bullet_impacts:
@@ -87,7 +86,7 @@ while running:
         if current_time - impact_time > 5:
             bullet_impacts.remove(impact)
         else:
-            pygame.draw.circle(screen, (0,0,0), (x,y), 5)
+            pygame.draw.circle(screen_cible, (0,0,0), (x,y), 5)
 
     # Mettre à jour l'affichage
     pygame.display.flip()
