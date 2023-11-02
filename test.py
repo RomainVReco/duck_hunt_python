@@ -28,7 +28,7 @@ if dic_2.get(4):
 variables_temp = dic_3.get(1)
 print("Variables temps : ", variables_temp)
 temp = (variables_temp[3][0]*-1, 0.5)
-variables_temp[3:4] = [temp]
+variables_temp[3] = temp
 print("Variables modifiées : ", variables_temp)
 new_dic_3 = dic_3.update({1: variables_temp})
 
