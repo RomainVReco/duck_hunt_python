@@ -1,3 +1,10 @@
+import pygame
+
+from movements import fonction
+
+pygame.init()
+pygame.mixer.init()
+
 a = ["sot"]
 a *= 3
 print(a)
@@ -6,7 +13,7 @@ print((5 / FPS))
 
 hasBounced = False
 
-dic = {1: [34, 45, 60], 2: (50, 60, 30), 3:hasBounced}
+dic = {1: [34, 45, 60], 2: (50, 60, 30), 3: hasBounced}
 print(dic)
 print(dic.get(1))
 print(dic.values())
@@ -27,9 +34,16 @@ if dic_2.get(4):
 
 variables_temp = dic_3.get(1)
 print("Variables temps : ", variables_temp)
-temp = (variables_temp[3][0]*-1, 0.5)
+temp = (variables_temp[3][0] * -1, 0.5)
 variables_temp[3] = temp
 print("Variables modifiées : ", variables_temp)
 new_dic_3 = dic_3.update({1: variables_temp})
 
 print("Mise à jour dic_3 : ", dic_3)
+
+print("Type dic_3 : ", type(dic_3))
+print("Dic_2 : ", dic_2)
+# dic_3 = dic_2.copy()
+print("Copie de dic_2 dans dic_3 : ", dic_3)
+
+# dic_3 = fonction(dic_2)
