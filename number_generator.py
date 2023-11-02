@@ -1,6 +1,7 @@
 import random
 import pygame
 
+from HUD.hud_bar import generate_hud, draw_hud
 from Sons.sound_effects import get_boum_sound, get_piou_sound, get_shot_sound
 
 largeur_ecran = 1280
@@ -22,6 +23,7 @@ ORANGE = (255, 127, 0)
 NOIR = (0, 0, 0)
 BLEU = (0, 0, 255)
 INDIGO = (75, 0, 130)
+GRIS = (211, 211, 211)
 
 # Initialisation des tailles, framerate et gravité
 pos_x_object = 0
@@ -47,12 +49,13 @@ number_of_horizontal_left = 3
 number_of_horizontal_right = 3
 number_of_horizontal = 3
 number_of_pair = number_of_target
+score = 0
+list_of_onscreen_items = (number_of_target, number_of_decoy, score)
 list_speeds_target = [(SPEED_X, SPEED_Y * 1.1), (SPEED_X * 2, SPEED_Y * 1.5), (SPEED_X * 4, SPEED_Y)]
 list_speeds_decoy = [(SPEED_X * 2, SPEED_Y * 1.2), (SPEED_X * 2.2, SPEED_Y * 1.5), (SPEED_X * 3, SPEED_Y * 1.45)]
 has_bounced_sides, has_bounced_ceiling = 0, 0
 has_bounced_sides_decoy, has_bounced_ceiling_decoy = 0, 0
 
-score = 0
 
 object_list = []
 other_object = []
@@ -83,7 +86,7 @@ for i in range(len(list_pair)):
 # Création des nombres des leurres, ici multiples de 3
 while len(set_decoy) < number_of_decoy:
     entier = random.randrange(12, 100, 3)
-    if entier % 3 == 0:
+    if entier % 3 == 0 and entier % 2 != 0:
         set_decoy.add(entier)
 
 list_decoy = list(set_decoy)
@@ -142,6 +145,7 @@ for other in other_object:
 j = 0
 del coordinates, rect
 
+HUD = generate_hud(largeur_ecran, hauteur_ecran, NOIR)
 
 while running:
     for event in pygame.event.get():
@@ -227,6 +231,9 @@ while running:
     pygame.draw.circle(screen, (0, 0, 0), (target_x_cible, target_y_cible), 16, 2)
     pygame.draw.line(screen, (0,0,0),( target_x_cible-1, target_y_cible-14), (target_x_cible-1, target_y_cible+14),2)
     pygame.draw.line(screen, (0,0,0),( target_x_cible-14, target_y_cible-1), (target_x_cible+14, target_y_cible-1),2)
+
+    # Dessin du HUD
+    draw_hud(screen, GRIS, HUD, list_of_onscreen_items, NOIR)
 
     pygame.display.flip()
     clock.tick(FPS)
