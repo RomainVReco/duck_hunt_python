@@ -10,7 +10,8 @@ clock = pygame.time.Clock()
 running = True
 dt = 0
 # Création de l'objet Font pour écrire dessus
-police = pygame.font.Font('freesansbold.ttf', 16)
+FONT_SIZE = 32
+police = pygame.font.Font('freesansbold.ttf', FONT_SIZE)
 
 screen.fill("grey")
 
@@ -117,7 +118,7 @@ while running:
         speed_temp = stats_items[3]
         rect_temp.x += speed_temp[0]
         rect_temp.y += speed_temp[1]
-        if rect_temp.x >= largeur_ecran-16 or rect_temp.x < 0:
+        if rect_temp.x > largeur_ecran-FONT_SIZE or rect_temp.x < 0:
             new_speed_x = (speed_temp[0] * -1, speed_temp[1])
             stats_items[3] = new_speed_x
             if stats_items[1] == 0:
@@ -126,7 +127,7 @@ while running:
                 has_bounced_sides = 0
             stats_items[1] = has_bounced_sides
             dictionnary_of_target.update({msg: stats_items})
-        if rect_temp.y > (hauteur_ecran - (hauteur_ecran * 0.15)) or rect_temp.y < 0:
+        if rect_temp.y > (hauteur_ecran - (round(hauteur_ecran * 0.15))) or rect_temp.y < 0:
             new_speed_y = (speed_temp[0], speed_temp[1] * -1)
             stats_items[3] = new_speed_y
             if stats_items[2] == 0:
