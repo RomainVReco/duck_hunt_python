@@ -1,5 +1,4 @@
 import random
-
 import pygame
 
 largeur_ecran = 1280
