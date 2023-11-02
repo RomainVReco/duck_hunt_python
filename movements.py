@@ -1,6 +1,5 @@
 
-def target_movements(dictionnary_of_target, screen, largeur_ecran, FONT_SIZE, hauteur_ecran):
-    # global dictionnary_of_target
+def target_movements(dictionnary_of_target, screen, largeur_ecran, FONT_SIZE, hauteur_ecran) -> dict:
     for msg, stats_items in dictionnary_of_target.items():
         screen.blit(msg, stats_items[0])
         rect_temp = stats_items[0]
@@ -25,9 +24,10 @@ def target_movements(dictionnary_of_target, screen, largeur_ecran, FONT_SIZE, ha
                 has_bounced_ceiling = 0
             stats_items[2] = has_bounced_ceiling
             dictionnary_of_target.update({msg: stats_items})
+    return dictionnary_of_target
 
 
-def decoy_movements(dictionnary_of_decoy, screen, largeur_ecran, FONT_SIZE, hauteur_ecran):
+def decoy_movements(dictionnary_of_decoy, screen, largeur_ecran, FONT_SIZE, hauteur_ecran) -> dict:
     for msg_decoy, stats_items_decoy in dictionnary_of_decoy.items():
         screen.blit(msg_decoy, stats_items_decoy[0])
         rect_temp = stats_items_decoy[0]
@@ -52,4 +52,4 @@ def decoy_movements(dictionnary_of_decoy, screen, largeur_ecran, FONT_SIZE, haut
                 has_bounced_ceiling_decoy = 0
             stats_items_decoy[2] = has_bounced_ceiling_decoy
             dictionnary_of_decoy.update({msg_decoy: stats_items_decoy})
-        return dictionnary_of_decoy
+    return dictionnary_of_decoy

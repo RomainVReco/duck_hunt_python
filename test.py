@@ -1,5 +1,7 @@
 import pygame
 
+from movements import fonction
+
 pygame.init()
 pygame.mixer.init()
 
@@ -39,6 +41,9 @@ new_dic_3 = dic_3.update({1: variables_temp})
 
 print("Mise à jour dic_3 : ", dic_3)
 
+print("Type dic_3 : ", type(dic_3))
 print("Dic_2 : ", dic_2)
-dic_3 = dic_2.copy()
+# dic_3 = dic_2.copy()
 print("Copie de dic_2 dans dic_3 : ", dic_3)
+
+# dic_3 = fonction(dic_2)
