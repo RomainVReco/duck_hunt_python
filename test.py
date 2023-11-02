@@ -1,3 +1,8 @@
+import pygame
+
+pygame.init()
+pygame.mixer.init()
+
 a = ["sot"]
 a *= 3
 print(a)
@@ -6,7 +11,7 @@ print((5 / FPS))
 
 hasBounced = False
 
-dic = {1: [34, 45, 60], 2: (50, 60, 30), 3:hasBounced}
+dic = {1: [34, 45, 60], 2: (50, 60, 30), 3: hasBounced}
 print(dic)
 print(dic.get(1))
 print(dic.values())
@@ -27,9 +32,24 @@ if dic_2.get(4):
 
 variables_temp = dic_3.get(1)
 print("Variables temps : ", variables_temp)
-temp = (variables_temp[3][0]*-1, 0.5)
+temp = (variables_temp[3][0] * -1, 0.5)
 variables_temp[3] = temp
 print("Variables modifiées : ", variables_temp)
 new_dic_3 = dic_3.update({1: variables_temp})
 
 print("Mise à jour dic_3 : ", dic_3)
+
+
+crash_sound = pygame.mixer.Sound("Sons/Bruitage/piou_1.mp3")
+if crash_sound is not None:
+    print("Variable initialisée")
+pygame.mixer.music.load("Sons/BO/MM2_Stage_Select.mp3")
+pygame.mixer.music.play()
+crash_sound.play()
+
+def crash():
+    ####################################
+    pygame.mixer.Sound.play(crash_sound)
+    # pygame.mixer.music.stop()
+
+crash()
