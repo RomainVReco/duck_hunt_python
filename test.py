@@ -39,17 +39,6 @@ new_dic_3 = dic_3.update({1: variables_temp})
 
 print("Mise à jour dic_3 : ", dic_3)
 
-
-crash_sound = pygame.mixer.Sound("Sons/Bruitage/piou_1.mp3")
-if crash_sound is not None:
-    print("Variable initialisée")
-pygame.mixer.music.load("Sons/BO/MM2_Stage_Select.mp3")
-pygame.mixer.music.play()
-crash_sound.play()
-
-def crash():
-    ####################################
-    pygame.mixer.Sound.play(crash_sound)
-    # pygame.mixer.music.stop()
-
-crash()
+print("Dic_2 : ", dic_2)
+dic_3 = dic_2.copy()
+print("Copie de dic_2 dans dic_3 : ", dic_3)

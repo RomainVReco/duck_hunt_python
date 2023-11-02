@@ -1,8 +1,10 @@
 import random
+from time import sleep
+
 import pygame
 
 from HUD.hud_bar import generate_hud, draw_hud
-from Sons.sound_effects import get_boum_sound, get_piou_sound, get_shot_sound
+from Sons.sound_effects import get_boum_sound, get_piou_sound, get_shot_sound, finish_sound
 
 largeur_ecran = 1280
 hauteur_ecran = 720
@@ -209,7 +211,7 @@ while running:
                 has_bounced_sides_decoy = 0
             stats_items_decoy[1] = has_bounced_sides_decoy
             dictionnary_of_decoy.update({msg_decoy: stats_items_decoy})
-        if rect_temp.y > (hauteur_ecran - (round(hauteur_ecran * 0.15))) or rect_temp.y < 0:
+        if rect_temp.y > (hauteur_ecran - (round(hauteur_ecran * 0.10))) or rect_temp.y < 0:
             new_speed_y = (speed_temp[0], speed_temp[1] * -1)
             stats_items_decoy[3] = new_speed_y
             if stats_items_decoy[2] == 0:
@@ -220,7 +222,11 @@ while running:
             dictionnary_of_decoy.update({msg_decoy: stats_items_decoy})
 
     if len(dictionnary_of_target.keys()) == 0:
+        pygame.mixer.Sound.stop()
+        finish_sound()
+        sleep(10)
         pygame.quit()
+
     j = 0
 
     # # Limiter les mouvements dans la fenêtre

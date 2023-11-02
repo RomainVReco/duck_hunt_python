@@ -1,9 +1,10 @@
 import pygame
 
+
 def generate_hud(largeur_ecran, hauteur_ecran, NOIR):
     police_hud = pygame.font.Font('freesansbold.ttf', 16)
     hud_labels = ["Cibles : ", "Leurre : ", "Score : "]
-    hud_size = (largeur_ecran, hauteur_ecran * 0.15)
+    hud_size = (largeur_ecran, hauteur_ecran * 0.10)
     hud_background = pygame.Rect(0, hauteur_ecran - hud_size[1], hud_size[0], hud_size[1])
 
     # Calcul des placements des rectangles container de libellé
