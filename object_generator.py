@@ -140,7 +140,7 @@ while running:
     for other in other_object:
         pygame.draw.rect(screen, NOIR, other, 1)
         other.y += (15 / FPS)
-        other.x += (9 / FPS)
+        other.x += (120 / FPS)
 
     # Création ds objets horizontaux sur l'aire de jeu
     for horizon_left in horizontal_object_left:
