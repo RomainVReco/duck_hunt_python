@@ -1,7 +1,5 @@
 import pygame
 
-from movements import fonction
-
 pygame.init()
 pygame.mixer.init()
 

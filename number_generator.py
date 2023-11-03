@@ -190,8 +190,6 @@ while running:
         sleep(10)
         pygame.quit()
 
-    j = 0
-
     # # Limiter les mouvements dans la fenêtre
     # target_x_cible = max(0, min(target_x_cible, largeur_ecran))
     # target_y_cible = max(0, min(target_y_cible, hauteur_ecran))
