@@ -45,3 +45,9 @@ print("Dic_2 : ", dic_2)
 print("Copie de dic_2 dans dic_3 : ", dic_3)
 
 # dic_3 = fonction(dic_2)
+
+f = 0
+print(bool(f))
+
+g = 1
+print(bool(g))
