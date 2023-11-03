@@ -51,3 +51,8 @@ print(bool(f))
 
 g = 1
 print(bool(g))
+FPS = 30
+hauteur = 720
+vitesse = 60//FPS
+
+print(vitesse)

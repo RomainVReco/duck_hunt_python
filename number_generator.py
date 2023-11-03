@@ -50,7 +50,7 @@ list_background = [background1, background2]
 current_background = list_background[random.randint(0,1)]
 
 # Position initiale de la cible
-target_x_cible, target_y_cible = 400, 300
+target_x_cible, target_y_cible = largeur_ecran//2, hauteur_ecran//2
 # Pour cacher le curseur de la souris
 pygame.mouse.set_visible(False)
 
