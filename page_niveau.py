@@ -63,9 +63,13 @@ while running:
                             page_intermediaire_facile()
                         if level == "Moyen":
                             pygame.time.wait(2000)
-                            etape_jeux = ETAPE_EXPLICATION
+                            from fonction_page_intermediaire_medium import page_intermediaire_medium
+                            page_intermediaire_medium()
                         if level == "Difficile":
                             pygame.time.wait(2000)
+                            from fonction_page_intermediaire_difficile import page_intermediaire_difficile
+                            page_intermediaire_difficile()
+
                             etape_jeux = ETAPE_EXPLICATION
 
 
