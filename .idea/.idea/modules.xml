@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+BRANCH_Cible_curseur
+      <module fileurl="file://$PROJECT_DIR$/.idea/duck_hunt_python.iml" filepath="$PROJECT_DIR$/.idea/duck_hunt_python.iml" />
+
       <module fileurl="file://$PROJECT_DIR$/.idea/Duck_hunt_python.iml" filepath="$PROJECT_DIR$/.idea/Duck_hunt_python.iml" />
+ main
     </modules>
   </component>
 </project>

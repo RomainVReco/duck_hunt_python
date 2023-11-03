@@ -71,6 +71,6 @@ def page_intermediaire_difficile():
         pygame.display.flip()
 
     #if __name__ == "__page_niveau__":
-#page_intermediaire_difficile()
+page_intermediaire_difficile()
 
 pygame.quit()

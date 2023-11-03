@@ -110,7 +110,6 @@ while running:
             screen.blit(text_surface, (button_rect.x + 50 + pression, button_rect.y + 10 + pression))
 
     elif etape_jeux == ETAPE_EXPLICATION:
-    #en fonction du level afficher explication
 
 
 
