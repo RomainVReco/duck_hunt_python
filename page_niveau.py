@@ -36,7 +36,7 @@ button_niveau = {
 }
 
 # chargez l'effet sonore
-click_sound = pygame.mixer.Sound("effet sonore/Shot of Winchester Magnum XTR.ogg")
+click_sound = pygame.mixer.Sound("effet sonore/Shot in 357 Magnum 9mm.ogg")
 # variable effet de pression sur le bouton enfoncé
 pressed_button_niveau = None
 
@@ -59,24 +59,19 @@ while running:
                         click_sound.play()
 
                         if level == "Facile":
-                            pygame.time.wait(2000)
-
+                            pygame.time.wait(1)
                             page_intermediaire_facile()
                         if level == "Moyen":
-                            pygame.time.wait(2000)
+                            pygame.time.wait(1)
                             from fonction_page_intermediaire_medium import page_intermediaire_medium
                             page_intermediaire_medium()
                         if level == "Difficile":
-                            pygame.time.wait(2000)
+                            pygame.time.wait(1)
                             from fonction_page_intermediaire_difficile import page_intermediaire_difficile
                             page_intermediaire_difficile()
 
                             etape_jeux = ETAPE_EXPLICATION
-
-
                 #etape_jeux = ETAPE_EXPLICATION
-
-
     # Affichage de l'écran
     screen.fill(WHITE)
 
@@ -108,10 +103,8 @@ while running:
             pygame.draw.rect(screen, BLACK, (button_rect.x + pression, button_rect.y + pression, button_rect.width, button_rect.height), 2)
             text_surface = font.render(level, True, BLACK)
             screen.blit(text_surface, (button_rect.x + 50 + pression, button_rect.y + 10 + pression))
-
     elif etape_jeux == ETAPE_EXPLICATION:
-
-
+        pass
 
     #elif etape_jeux
     #entrer le jeux
