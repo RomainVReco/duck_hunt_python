@@ -14,6 +14,7 @@ hauteur_ecran = 720
 pygame.init()
 screen = pygame.display.set_mode((largeur_ecran, hauteur_ecran))
 clock = pygame.time.Clock()
+pygame.display.set_caption("Nerd shooter")
 running = True
 dt = 0
 # Création de l'objet Font pour écrire dessus
@@ -66,9 +67,6 @@ is_hexa = -1
 # A partir des entrées utilisateurs, défini le niveau de difficulté avec les mutliples à dégommer, les leurres à éviter
 # et si la représentation des chiffres doit être décimale ou héxadécimale
 integer, is_hexa = set_difficulty(integer, is_hexa)
-
-
-
 
 # En fonction de la difficulté, défini les variables de variation du score
 if is_hexa:
