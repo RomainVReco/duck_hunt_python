@@ -4,7 +4,7 @@ import random
 def interger_generator(integer, number_of_target, police, COLOR, number_of_decoy, is_hexa):
     set_pair = set()
     while len(set_pair) < number_of_target:
-        entier = random.randrange(12, 200, integer)
+        entier = random.randrange(integer, 100, integer)
         if is_hexa:
             entier = hex(entier)
         set_pair.add(entier)
@@ -24,11 +24,11 @@ def interger_generator(integer, number_of_target, police, COLOR, number_of_decoy
 
     set_decoy = set()
     while len(set_decoy) < number_of_decoy:
-        entier = random.randrange(0, 200, challenge_integer)
-        if entier % challenge_integer == 0 and entier % integer != 0:
+        entier_decoy = random.randrange(challenge_integer, 100, challenge_integer)
+        if entier_decoy % challenge_integer == 0 and entier_decoy % integer != 0:
             if is_hexa:
-                entier = hex(entier)
-            set_decoy.add(entier)
+                entier_decoy = hex(entier_decoy)
+            set_decoy.add(entier_decoy)
 
     list_decoy = list(set_decoy)
     list_msg_decoy = list()
