@@ -1,6 +1,7 @@
 import pygame
 import sys
 
+from fonction_page_intermediaire_facile import page_intermediaire_facile
 
 ETAPE_CHOIX = 1
 ETAPE_EXPLICATION = 2
@@ -59,7 +60,7 @@ while running:
 
                         if level == "Facile":
                             pygame.time.wait(2000)
-                            from fonction_page_intermediaire_facile import page_intermediaire_facile
+
                             page_intermediaire_facile()
                         if level == "Moyen":
                             pygame.time.wait(2000)
@@ -108,8 +109,10 @@ while running:
             text_surface = font.render(level, True, BLACK)
             screen.blit(text_surface, (button_rect.x + 50 + pression, button_rect.y + 10 + pression))
 
-    #elif etape_jeux == ETAPE_EXPLICATION:
-    # en fonction du level afficher explication
+    elif etape_jeux == ETAPE_EXPLICATION:
+    #en fonction du level afficher explication
+
+
 
     #elif etape_jeux
     #entrer le jeux

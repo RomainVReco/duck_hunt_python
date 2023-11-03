@@ -71,11 +71,11 @@ def page_intermediaire_facile():
         pygame.display.flip()
 
     #if __name__ == "__page_niveau__":
-page_intermediaire_facile()
+
 
 pygame.quit()
 
-
+#page_intermediaire_facile()
 
 
 

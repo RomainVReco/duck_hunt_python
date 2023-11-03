@@ -83,7 +83,7 @@ def shot_viseur():
         pygame.draw.line(screen_cible,(255, 0, 0), (target_x_cible - 25, target_y_cible), (target_x_cible + 25, target_y_cible), 1)
         pygame.draw.line(screen_cible, (255, 0, 0), (target_x_cible, target_y_cible - 25), (target_x_cible, target_y_cible + 25), 1)
         pygame.draw.circle(screen_cible, (255, 0, 0), (target_x_cible, target_y_cible), 30, 1)
-        pygame.draw.circle(screen_cible, (255, 0, 0), (target_x_cible, target_y_cible), 4)
+        #pygame.draw.circle(screen_cible, (255, 0, 0), (target_x_cible, target_y_cible), 4)
 
 
         # Dessiner impact de balle

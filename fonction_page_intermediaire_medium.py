@@ -71,6 +71,6 @@ def page_intermediaire_medium():
         pygame.display.flip()
 
     #if __name__ == "__page_niveau__":
-page_intermediaire_medium()
+#page_intermediaire_medium()
 
 pygame.quit()
