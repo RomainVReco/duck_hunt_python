@@ -5,6 +5,7 @@ import pygame
 
 from HUD.hud_bar import generate_hud, draw_hud
 from Sons.sound_effects import get_boum_sound, get_piou_sound, get_shot_sound, finish_sound
+from integer_hexa_generator import interger_generator, set_difficulty
 from movements import target_movements, decoy_movements
 
 largeur_ecran = 1280
@@ -59,15 +60,25 @@ list_speeds_target = [(SPEED_X, SPEED_Y * 1.1), (SPEED_X * 2, SPEED_Y * 1.5), (S
 list_speeds_decoy = [(SPEED_X * 2, SPEED_Y * 1.2), (SPEED_X * 2.2, SPEED_Y * 1.5), (SPEED_X * 3, SPEED_Y * 1.45)]
 has_bounced_sides, has_bounced_ceiling = 0, 0
 has_bounced_sides_decoy, has_bounced_ceiling_decoy = 0, 0
+integer = 0
+is_hexa = -1
 
+# A partir des entrées utilisateurs, défini le niveau de difficulté avec les mutliples à dégommer, les leurres à éviter
+# et si la représentation des chiffres doit être décimale ou héxadécimale
+integer, is_hexa = set_difficulty(integer, is_hexa)
+
+# En fonction de la difficulté, défini les variables de variation du score
+if is_hexa:
+    SCORE_INCREMENT = 500
+    SCORE_DECREMENT = 100
+else:
+    SCORE_INCREMENT = 200
+    SCORE_DECREMENT = 75
 
 object_list = []
 other_object = []
 horizontal_object_left = []
 horizontal_object_right = []
-
-set_pair = set()
-set_decoy = set()
 dictionnary_of_target = {}
 dictionnary_of_decoy = {}
 
@@ -75,29 +86,8 @@ dictionnary_of_decoy = {}
 key_to_remove = None
 
 # Création des nombres à cliquer. Utilisation d'un set pour garantir l'absence de doublon
-while len(set_pair) < number_of_pair:
-    entier = random.randrange(10, 100, 2)
-    set_pair.add(entier)
-
-# On transforme le set en list, pour accéder aux valeurs plus facilement
-list_pair = list(set_pair)
-list_msg = list()
-
-# Les multiples sont transformés en message affichable à l'écran
-for i in range(len(list_pair)):
-    list_msg.append(police.render(str(list_pair[i]), True, NOIR))
-
-# Création des nombres des leurres, ici multiples de 3
-while len(set_decoy) < number_of_decoy:
-    entier = random.randrange(12, 100, 3)
-    if entier % 3 == 0 and entier % 2 != 0:
-        set_decoy.add(entier)
-
-list_decoy = list(set_decoy)
-list_msg_decoy = list()
-
-for i in range(len(list_decoy)):
-    list_msg_decoy.append(police.render(str(list_decoy[i]), True, NOIR))
+# et création des nombres des leurres
+list_msg, list_msg_decoy = interger_generator(integer, number_of_target, police, NOIR, number_of_decoy, is_hexa)
 
 # Création de manière aléatoire et sans chevauchement des aires des rectangles
 # Ils peuvent servir de support à l'insertion d'image ou d'autres éléments
@@ -110,7 +100,7 @@ while len(object_list) < number_of_target:
             not_colliding = False
     if not_colliding:
         object_list.append(object_creation_process)
-assert len(object_list) == number_of_target, "La liste des rectangles est différente de 5"
+assert len(object_list) == number_of_target, ("La liste des rectangles est différente de ", number_of_target)
 
 # Boucle de création du dictionnaire pour placer les messages sur l'écran
 for obj in object_list:
@@ -134,7 +124,7 @@ while len(other_object) < number_of_decoy:
             not_colliding = False
     if not_colliding:
         other_object.append(object_creation_process)
-assert len(other_object) == number_of_decoy, "La liste des leurres est différente de 5"
+assert len(other_object) == number_of_decoy, ("La liste des leurres est différente de ", number_of_decoy)
 
 # Création des leurres
 for other in other_object:
@@ -162,13 +152,13 @@ while running:
             for dicK, dicV in dictionnary_of_target.items():
                 if dicV[0].collidepoint(event.pos):
                     key_to_remove = dicK
-                    score += 200
+                    score += SCORE_INCREMENT
                     get_boum_sound()
                     number_of_target -= 1
                     list_of_onscreen_items[0], list_of_onscreen_items[2] = number_of_target, score
             for decoy_key, decoy_values in dictionnary_of_decoy.items():
                 if decoy_values[0].collidepoint(event.pos):
-                    score -= 100
+                    score -= SCORE_DECREMENT
                     decoy_hit += 1
                     list_of_onscreen_items[1], list_of_onscreen_items[2] = decoy_hit, score
 
@@ -187,12 +177,8 @@ while running:
 
     if len(dictionnary_of_target.keys()) == 0:
         finish_sound()
-        sleep(10)
+        sleep(2.0)
         pygame.quit()
-
-    # # Limiter les mouvements dans la fenêtre
-    # target_x_cible = max(0, min(target_x_cible, largeur_ecran))
-    # target_y_cible = max(0, min(target_y_cible, hauteur_ecran))
 
     # Dessin du réticule de visée
     pygame.draw.circle(screen, (0, 0, 0), (target_x_cible, target_y_cible), 16, 2)
