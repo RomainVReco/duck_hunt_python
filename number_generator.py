@@ -21,8 +21,6 @@ dt = 0
 FONT_SIZE = 32
 police = pygame.font.Font('freesansbold.ttf', FONT_SIZE)
 
-screen.fill("grey")
-
 # Initialisation de variables de couleurs
 ORANGE = (255, 127, 0)
 NOIR = (0, 0, 0)
@@ -41,6 +39,15 @@ SPEED_X = round(60 // FPS)
 SPEED_Y = round(90 // FPS)
 i = 0
 j = 0
+
+# Chargement de l'image du background
+background1 = pygame.image.load("assets/background/desert.jpg")
+LARGEUR, HAUTEUR = (background1.get_width() // 4, background1.get_height() // 4)
+background1 = pygame.transform.scale(background1, (LARGEUR, HAUTEUR))
+background2 = pygame.image.load("assets/background/island.jpg")
+background2 = pygame.transform.scale(background2, (LARGEUR, HAUTEUR))
+list_background = [background1, background2]
+current_background = list_background[random.randint(0,1)]
 
 # Position initiale de la cible
 target_x_cible, target_y_cible = 400, 300
@@ -108,7 +115,7 @@ for obj in object_list:
     coordinates = obj.topleft
     rect = list_msg[j].get_rect()
     rect.topleft = coordinates
-    speed_temp = list_speeds_target[random.randint(0, 2)]
+    speed_temp = list_speeds_target[random.randint(0, 3)]
     dictionnary_of_target.update({list_msg[j]: [rect, has_bounced_sides, has_bounced_ceiling, speed_temp]})
     print(dictionnary_of_target)
     j += 1
@@ -132,7 +139,7 @@ for other in other_object:
     coordinates = other.topleft
     rect = list_msg_decoy[j].get_rect()
     rect.topleft = coordinates
-    speed_temp = list_speeds_decoy[random.randint(0, 2)]
+    speed_temp = list_speeds_decoy[random.randint(0, 3)]
     dictionnary_of_decoy.update(
         {list_msg_decoy[j]: [rect, has_bounced_sides_decoy, has_bounced_ceiling_decoy, speed_temp]})
     print(dictionnary_of_target)
@@ -143,6 +150,7 @@ del coordinates, rect
 HUD = generate_hud(largeur_ecran, hauteur_ecran, NOIR)
 
 while running:
+    screen.blit(current_background, (0, 0))
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
@@ -166,7 +174,6 @@ while running:
     if key_to_remove is not None:
         dictionnary_of_target.pop(key_to_remove)
         key_to_remove = None
-    screen.fill("grey")
 
     pos_y_object += (12 / FPS) * GRAVITY
 

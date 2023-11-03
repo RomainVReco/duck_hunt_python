@@ -1,5 +1,4 @@
 import random
-
 import pygame
 
 PATH_SOUND_EFFECTS = "Sons/Bruitage/"
