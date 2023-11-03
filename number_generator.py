@@ -56,8 +56,8 @@ number_of_horizontal = 3
 number_of_pair = number_of_target
 score = 0
 list_of_onscreen_items = [number_of_target, decoy_hit, score]
-list_speeds_target = [(SPEED_X, SPEED_Y * 1.1), (SPEED_X * 2, SPEED_Y * 1.5), (SPEED_X * 4, SPEED_Y)]
-list_speeds_decoy = [(SPEED_X * 2, SPEED_Y * 1.2), (SPEED_X * 2.2, SPEED_Y * 1.5), (SPEED_X * 3, SPEED_Y * 1.45)]
+list_speeds_target = [(SPEED_X, SPEED_Y * 1.1), (SPEED_X * 2, SPEED_Y * 1.5), (-SPEED_X * 4, SPEED_Y), (-SPEED_X*2, SPEED_Y)]
+list_speeds_decoy = [(SPEED_X * 2, SPEED_Y * 1.2), (SPEED_X * 2.2, SPEED_Y * 1.5), (-SPEED_X * 3, SPEED_Y * 1.45), (-SPEED_X*2, SPEED_Y)]
 has_bounced_sides, has_bounced_ceiling = 0, 0
 has_bounced_sides_decoy, has_bounced_ceiling_decoy = 0, 0
 integer = 0
@@ -66,6 +66,9 @@ is_hexa = -1
 # A partir des entrées utilisateurs, défini le niveau de difficulté avec les mutliples à dégommer, les leurres à éviter
 # et si la représentation des chiffres doit être décimale ou héxadécimale
 integer, is_hexa = set_difficulty(integer, is_hexa)
+
+
+
 
 # En fonction de la difficulté, défini les variables de variation du score
 if is_hexa:

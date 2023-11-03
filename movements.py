@@ -43,7 +43,7 @@ def decoy_movements(dictionnary_of_decoy, screen, largeur_ecran, FONT_SIZE, haut
                 has_bounced_sides_decoy = 0
             stats_items_decoy[1] = has_bounced_sides_decoy
             dictionnary_of_decoy.update({msg_decoy: stats_items_decoy})
-        if rect_temp.y > (hauteur_ecran - (round(hauteur_ecran * 0.10))) or rect_temp.y < 0:
+        if rect_temp.y > (hauteur_ecran - (round(hauteur_ecran * 0.15))) or rect_temp.y < 0:
             new_speed_y = (speed_temp[0], speed_temp[1] * -1)
             stats_items_decoy[3] = new_speed_y
             if stats_items_decoy[2] == 0:
